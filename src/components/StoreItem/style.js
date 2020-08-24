@@ -7,8 +7,7 @@ export const Box = styled.div`
   padding: 0.5%;
   width: 270px;
   height: 170px;
-
-  background: transparent;
+  background: rgba(255, 255, 255, 0.2);
   margin: 10px 5px;
   border: 2px solid #1d3557;
   border-radius: 5px;
@@ -16,11 +15,10 @@ export const Box = styled.div`
   .StoreName {
     font-family: "Varela Round", sans-serif;
     height: 20%;
-    margin:0;
+    margin: 0;
   }
   .status {
-    color: ${props => props.status === "open" ? "#92D994" : "black"};
-    ;
+    color: ${(props) => (props.status === "open" ? "#92D994" : "black")};
   }
 `;
 
@@ -38,14 +36,13 @@ export const FlexItem = styled.div`
     .IconContainer {
       display: flex;
 
-
       span {
-        display:flex;
-        align-items:center;
+        display: flex;
+        align-items: center;
       }
       .amount {
         font-size: 25px;
-        margin:0 0 0 5px;
+        margin: 0 0 0 5px;
       }
       .add,
       .remove {
@@ -62,6 +59,16 @@ export const FlexItem = styled.div`
     button {
       margin: 0 10px 0 0;
       width: 70px;
+      
+    }
+
+    .GhostBtn {
+      color: #1d3557;
+      border-color: #1d3557;
+    }
+    .FilledBtn{
+      background:#1d3557;
+      border-color: #1d3557;
     }
   }
 `;

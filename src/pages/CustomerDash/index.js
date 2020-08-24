@@ -1,48 +1,42 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useContext } from "react";
+import { GlobalContext } from "../../context";
 import * as Styled from "./style";
 import * as GlobalStyle from "../../globalStyle";
 import StoreItem from "../../components/StoreItem";
+import Storage from '../../components/Storage'
+import { Divider } from "antd";
+import { LoadingOutlined } from "@ant-design/icons";
+
 // import data from "./test.json";
-import firebase from '../../firebase/config'
+
+import { UpdateStore } from "../../firebase/functions";
 
 const CustomerDash = () => {
- const [DBstores, setDBstores] = useState([]);
-
- const GetStores = () => {
-  const itemsRef = firebase.database().ref('stores');
-  let newArr = [];
+  const {
+    store: { DBstores },
+  } = useContext(GlobalContext);
   
-    Object.entries(
-    itemsRef.on('value', (snapshot) => {
-      Object.entries(snapshot.val()).map((i) => {
-        newArr = [...newArr, i[1]]
-      })
-      setDBstores(newArr)
-    })
-   )
-}
 
-useEffect(()=>{
-  GetStores()
-  
-},[])
- 
+
   return (
     <GlobalStyle.ContentContainer background="#457b9d">
       <h1> Ice Cream Stores </h1>
 
       <Styled.StoreItemContainer>
-        {DBstores.length > 0 && DBstores.map((store) => (
-          <StoreItem
-            key={store.name}
-            name={store.name}
-            status={store.status}
-            chairs={store.chairs}
-            tables={store.tables}
-          />
-        ))}
+        {DBstores.length > 0 ? (
+          DBstores.map((store) => <StoreItem key={store.name} store={store} />)
+        ) : (
+          <LoadingOutlined className="LoadingIcon" />
+        )}
       </Styled.StoreItemContainer>
-      <button onClick={ () => console.log('test')}> FIREBASE </button>
+      
+      <Divider className="divider" orientation="left">
+        Lagerstatus
+      </Divider>
+
+      <Storage/>
+
+
     </GlobalStyle.ContentContainer>
   );
 };

@@ -6,7 +6,7 @@ const Icon = ({ type, size = "25px", color = "black" }) => {
   switch (type) {
     case "chair":
       returnIcon = (
-        <div style={{ display: "flex", alignItems: "center" }}>
+        
           <svg
             height={size}
             width={size}
@@ -20,13 +20,12 @@ const Icon = ({ type, size = "25px", color = "black" }) => {
             <circle cx="368" cy="40" r="8" />
             <circle cx="368" cy="112" r="8" />
           </svg>
-        </div>
+        
       );
       break;
 
     case "table":
       returnIcon = (
-        <div style={{ display: "flex", alignItems: "center" }}>
           <svg
             height={size}
             width={size}
@@ -40,7 +39,6 @@ const Icon = ({ type, size = "25px", color = "black" }) => {
 			c-4.418,0-8,3.582-8,8v296h-16V128c0-4.418-3.582-8-8-8H72c-4.418,0-8,3.582-8,8v296H48V128c0-4.418-3.582-8-8-8H16V88h480V120z"
             />
           </svg>
-        </div>
       );
       break;
 
@@ -48,7 +46,9 @@ const Icon = ({ type, size = "25px", color = "black" }) => {
       returnIcon = null;
   }
 
-  return returnIcon;
+  return (
+    <div className='icon'>{returnIcon}</div>
+    )
 };
 
 export default Icon;

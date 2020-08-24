@@ -6,6 +6,7 @@ import "antd/dist/antd.css";
 import Vinden from "./Vinden";
 import CustomerDash from "./CustomerDash";
 
+
 const App = () => {
   const [buttonColor, setButtonColor] = useState("huvudsida");
 
