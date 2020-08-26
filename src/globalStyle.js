@@ -26,4 +26,10 @@ export const ContentContainer = styled.section`
     display: flex;
     align-items:center;
   }
+
+  .StoreName {
+    font-family: "Varela Round", sans-serif;
+    height: 20%;
+    margin: 0;
+  }
 `;

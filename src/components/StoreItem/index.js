@@ -1,41 +1,35 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import * as Styled from "./style";
 import Icon from "../../icons";
 import { Button, Typography } from "antd";
 import "antd/dist/antd.css";
-import { GlobalContext } from "../../context";
-import { UpdateStore } from '../../firebase/functions'
-
+import { sendOrder,getStoreStatus } from '../../helpers'
 
 const StoreItem = ({ store }) => {
-  const {
-    actions: { setStore, selectedStore },
-  } = useContext(GlobalContext);
+  // const {
+  //   actions: { setOrder, order },
+  // } = useContext(GlobalContext);
 
   const { Title } = Typography;
   const { name, tables, chairs, status } = store;
   const [isSummer, setSummer] = useState(true);
 
-  const summer = (store) => {
-    let removeFurniture;
-    removeFurniture = {
-      ...store,
-      tables: +store.tables,
-      chairs: +store.chairs,
-    };
-    setStore(removeFurniture)
-    setSummer(true);
-    console.log(removeFurniture);
-    // UpdateStore('store', store.id).update({ status: "request sent" });
-  };
-
+  useEffect(()=>{
+    console.log('running')
+    if(chairs && tables > 0){
+      setSummer(true)
+    } else {
+      setSummer(false)
+    }
+  },[chairs,tables])
+  
   return (
     <>
       <Styled.Box status={status}>
         <Title className="StoreName" level={3}>
           {name}
         </Title>
-        <p className="status">Sommaröppet</p>
+        <p className="status">{getStoreStatus(store)}</p>
 
         <Styled.FlexItem>
           <div className="Icons">
@@ -54,19 +48,21 @@ const StoreItem = ({ store }) => {
           <div className="Buttons">
             <Button
               className={isSummer ? "FilledBtn" : "GhostBtn"}
-              onClick={() => summer(store)}
+              onClick={!isSummer ? () => sendOrder(store, 'add'): null}
               type={isSummer ? "primary" : null}
               ghost={isSummer ? false : true}
               size={"small"}
+              disabled={store.status === "request sent" ? true : false}
             >
               Sommar
             </Button>
             <Button
               className={isSummer ? "GhostBtn" : "FilledBtn"}
-              onClick={() => setSummer(false)}
+              onClick={() => sendOrder(store, 'remove')}
               type={isSummer ? null : "primary"}
               ghost={isSummer ? true : false}
               size={"small"}
+              disabled={store.status === "request sent" ? true : false}
             >
               Vinter
             </Button>

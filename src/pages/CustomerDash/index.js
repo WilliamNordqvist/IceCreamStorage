@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { GlobalContext } from "../../context";
 import * as Styled from "./style";
 import * as GlobalStyle from "../../globalStyle";
@@ -6,10 +6,6 @@ import StoreItem from "../../components/StoreItem";
 import Storage from '../../components/Storage'
 import { Divider } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
-
-// import data from "./test.json";
-
-import { UpdateStore } from "../../firebase/functions";
 
 const CustomerDash = () => {
   const {
@@ -19,7 +15,7 @@ const CustomerDash = () => {
 
 
   return (
-    <GlobalStyle.ContentContainer background="#457b9d">
+    <GlobalStyle.ContentContainer background="#B9DEED">
       <h1> Ice Cream Stores </h1>
 
       <Styled.StoreItemContainer>

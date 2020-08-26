@@ -5,8 +5,10 @@ export const GlobalContext = createContext();
 
 export const GlobalProvider = ({ children }) => {
   const [DBstores, setDBstores] = useState([]);
-  const [DBstorage, setDBStorage] = useState([]);
-  const [selectedStore, setStore] = useState([]);
+  const [DBstorage, setDBStorage] = useState({});
+  const [DBorders, setDBorders] = useState([]);
+  
+  const [order, setOrder] = useState([]);
 
   const GetStores = () => {
     const itemsRef = firebase.database().ref("stores");
@@ -27,21 +29,49 @@ export const GlobalProvider = ({ children }) => {
     let res
     const itemsRef = firebase.database().ref("storage");
     itemsRef.on("value", (snapshot) => {
-      res = Object.entries(snapshot.val())
-      setDBStorage(res[0][1])
+      res = snapshot.val()
+      setDBStorage(res)
     })
+    
   };
+
+  const GetOrders = () => {
+    let item
+    let newArr
+    const itemsRef = firebase.database().ref("orders");
+  
+
+    itemsRef.on("value", (snapshot) => {
+      newArr = [];
+
+      if(snapshot.val()){
+        Object.entries(snapshot.val()).map((i) => {
+          item = { ...i[1], orderID: i[0] };
+          newArr = [...newArr, item];
+        });
+      }
+
+      setDBorders(newArr)
+    });
+
+      
+  }
 
 
   useEffect(() => {
     GetStores();
     GetStorage();
+    if(GetOrders()){
+      GetOrders();
+    }
   }, []);
-
-  // console.log(DBstorage)
+  
   return (
     <GlobalContext.Provider
       value={{
+        orders: {
+          DBorders,
+        },
         store: {
           DBstores,
         },
@@ -49,8 +79,8 @@ export const GlobalProvider = ({ children }) => {
           DBstorage,
         },
         actions:{
-          selectedStore,
-          setStore,
+          order,
+          setOrder,
         }
       }}
     >

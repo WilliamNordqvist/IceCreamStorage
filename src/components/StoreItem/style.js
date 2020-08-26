@@ -9,16 +9,12 @@ export const Box = styled.div`
   height: 170px;
   background: rgba(255, 255, 255, 0.2);
   margin: 10px 5px;
-  border: 2px solid #1d3557;
+  border: ${(props) => (props.status === "request sent" ? "2px solid #8B0000" : "2px solid #1d3557")};
   border-radius: 5px;
 
-  .StoreName {
-    font-family: "Varela Round", sans-serif;
-    height: 20%;
-    margin: 0;
-  }
+
   .status {
-    color: ${(props) => (props.status === "open" ? "#92D994" : "black")};
+    color: ${(props) => (props.status === "request sent" ? "#8B0000" : "#1d3557")};
   }
 `;
 
@@ -65,10 +61,16 @@ export const FlexItem = styled.div`
     .GhostBtn {
       color: #1d3557;
       border-color: #1d3557;
+      background:transparent;
     }
     .FilledBtn{
       background:#1d3557;
       border-color: #1d3557;
     }
+    /* .DisableBtn{
+      color: #1d3557;
+      background:transparent;
+      border-color: #1d3557;
+    } */
   }
 `;

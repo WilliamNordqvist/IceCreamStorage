@@ -23,9 +23,17 @@ export const MainContainer = styled.main`
     a { 
       margin: 0 15px;
     }
-
+.active{ 
+  button {
+    /* background:red; */
+    background:#1890ff;
+    color:white
+  }
+}
     button {
       width: 150px;
+      color:#1890ff;
+      border-color:#1890ff;
     }
   }
 `;

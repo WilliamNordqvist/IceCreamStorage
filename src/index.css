@@ -1,16 +1,33 @@
-@import url('https://fonts.googleapis.com/css2?family=Bree+Serif&family=Varela+Round&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Bree+Serif&family=Varela+Round&display=swap");
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
+    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+
+
+.ant-btn-primary[disabled] {
+  color: white !important;
+}
+.ant-btn-dangerous.ant-btn-primary {
+  background: transparent !important;
+  border-color: #8B0000 !important;
+  color:#8B0000 !important;
+  
+}
+
+.ant-btn-dangerous.ant-btn-primary:focus{
+background:#8B0000 !important;
+color:white !important;
 }
 
