@@ -5,7 +5,7 @@ import Icon from '../../icons'
 
 const Orderitem = ({ ConfirmOrder, order }) => {
   const { Title } = Typography;
-  const { storeName, chairs, tables } = order
+  const { storeName, chairs, tables, orderCreated } = order
 
 
   return (
@@ -13,7 +13,7 @@ const Orderitem = ({ ConfirmOrder, order }) => {
       <Title className="StoreName" level={3}>
         {storeName}
       </Title>
-      <p> DATUM </p>
+      <p> {orderCreated} </p>
 
       <Styled.FlexItem>
         <div className="Icons">

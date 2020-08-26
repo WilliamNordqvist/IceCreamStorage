@@ -3,26 +3,21 @@ import * as Styled from "./style";
 import Icon from "../../icons";
 import { Button, Typography } from "antd";
 import "antd/dist/antd.css";
-import { sendOrder,getStoreStatus } from '../../helpers'
+import { sendOrder, getStoreStatus } from "../../helpers";
 
 const StoreItem = ({ store }) => {
-  // const {
-  //   actions: { setOrder, order },
-  // } = useContext(GlobalContext);
-
   const { Title } = Typography;
   const { name, tables, chairs, status } = store;
   const [isSummer, setSummer] = useState(true);
 
-  useEffect(()=>{
-    console.log('running')
-    if(chairs && tables > 0){
-      setSummer(true)
+  useEffect(() => {
+    if (chairs && tables > 0) {
+      setSummer(true);
     } else {
-      setSummer(false)
+      setSummer(false);
     }
-  },[chairs,tables])
-  
+  }, [chairs, tables]);
+
   return (
     <>
       <Styled.Box status={status}>
@@ -48,7 +43,7 @@ const StoreItem = ({ store }) => {
           <div className="Buttons">
             <Button
               className={isSummer ? "FilledBtn" : "GhostBtn"}
-              onClick={!isSummer ? () => sendOrder(store, 'add'): null}
+              onClick={!isSummer ? () => sendOrder(store, "add") : null}
               type={isSummer ? "primary" : null}
               ghost={isSummer ? false : true}
               size={"small"}
@@ -58,7 +53,7 @@ const StoreItem = ({ store }) => {
             </Button>
             <Button
               className={isSummer ? "GhostBtn" : "FilledBtn"}
-              onClick={() => sendOrder(store, 'remove')}
+              onClick={() => sendOrder(store, "remove")}
               type={isSummer ? null : "primary"}
               ghost={isSummer ? true : false}
               size={"small"}

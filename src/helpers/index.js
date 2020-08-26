@@ -1,5 +1,13 @@
 import { PushToDB, UpdateDB } from "../firebase/functions";
 
+const getFullDate = () => {
+  let newDate = new Date();
+  let date = newDate.getDate();
+  let month = newDate.getMonth() + 1;
+  let year = newDate.getFullYear();
+  return `${year}/${month}/${date}`;
+};
+
 export const sendOrder = (store, type) => {
   let newOrder;
   let updateObj = {};
@@ -7,8 +15,22 @@ export const sendOrder = (store, type) => {
   switch (type) {
     case "add":
       updateObj = {
-        tables: 10,
-        chairs:20,
+        tables:
+          store.name === "Hornstull"
+            ? 3
+            : store.name === "Liljeholmen"
+            ? 2
+            : store.name === "Vasastan"
+            ? 7
+            : 10,
+        chairs:
+          store.name === "Hornstull"
+            ? 6
+            : store.name === "Liljeholmen"
+            ? 4
+            : store.name === "Vasastan"
+            ? 14
+            : 10,
       };
       break;
     case "remove":
@@ -21,13 +43,13 @@ export const sendOrder = (store, type) => {
       updateObj = null;
   }
 
-
   newOrder = {
     ...store,
     ...updateObj,
     storeID: store.id,
     storeName: store.name,
     status: "request sent",
+    orderCreated: getFullDate(),
   };
 
   delete newOrder.id;
@@ -77,6 +99,7 @@ export const ConfirmOrder = (order, DBstores, DBstorage) => {
   let orderUpdateObj = {
     ...order,
     status: "completed",
+    orderCompleted: getFullDate(),
   };
 
   let storageUpdateObj = {
