@@ -25,15 +25,17 @@ export const MainContainer = styled.main`
     }
 .active{ 
   button {
-    /* background:red; */
-    background:#1890ff;
+    background:#8B0000;
     color:white
   }
 }
     button {
       width: 150px;
       color:#1890ff;
-      border-color:#1890ff;
+      border-color:#8B0000;
+      :focus{
+        border-color:#8B0000;
+      }
     }
   }
 `;

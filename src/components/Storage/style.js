@@ -12,7 +12,7 @@ export const StorageContainer = styled.section`
   .storageItem {
     width: 100px;
     height: 100px;
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.7);
     display: flex;
     flex-direction: column;
     justify-content: center;

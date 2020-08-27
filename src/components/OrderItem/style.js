@@ -9,7 +9,7 @@ export const OrderItemContainer = styled.div`
   height: 200px;
   border: 2px solid #1d3557;
   border-radius: 5px;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.7);
   margin: 10px 5px;
   p {
     font-size: 13px;

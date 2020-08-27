@@ -4,26 +4,27 @@ import * as GlobalStyle from "../../globalStyle";
 import { GlobalContext } from "../../context/index";
 import Storage from "../../components/Storage";
 import Orderitem from "../../components/OrderItem";
+import OrderList from "../../components/OrderList";
 import { Divider } from "antd";
-import { ConfirmOrder } from '../../helpers'
-
+import { ConfirmOrder } from "../../helpers";
 
 const Vinden = () => {
-  let unCompletedOrders = []
+  let unCompletedOrders = [];
 
   const {
     store: { DBstores },
     orders: { DBorders },
-    storage: { DBstorage }, 
+    storage: { DBstorage },
   } = useContext(GlobalContext);
 
-   unCompletedOrders =  DBorders && DBorders.filter( order => order.status !== 'completed')
+  unCompletedOrders =
+    DBorders && DBorders.filter((order) => order.status !== "completed");
 
   return (
     <GlobalStyle.ContentContainer background="#a8dadc">
       <h1> Vinden Dashboard </h1>
       <Storage />
-      <Divider className="divider" orientation="right">
+      <Divider className="divider" orientation="center">
         Orders
       </Divider>
       <Styled.OrdersContainer>
@@ -36,6 +37,7 @@ const Vinden = () => {
             />
           ))}
       </Styled.OrdersContainer>
+      <OrderList />
     </GlobalStyle.ContentContainer>
   );
 };

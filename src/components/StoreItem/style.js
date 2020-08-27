@@ -7,7 +7,7 @@ export const Box = styled.div`
   padding: 0.5%;
   width: 270px;
   height: 170px;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.7);
   margin: 10px 5px;
   border: ${(props) => (props.status === "request sent" ? "2px solid #8B0000" : "2px solid #1d3557")};
   border-radius: 5px;
@@ -67,10 +67,5 @@ export const FlexItem = styled.div`
       background:#1d3557;
       border-color: #1d3557;
     }
-    /* .DisableBtn{
-      color: #1d3557;
-      background:transparent;
-      border-color: #1d3557;
-    } */
   }
 `;
